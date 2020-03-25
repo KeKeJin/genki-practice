@@ -718,3 +718,44 @@ def practice_all():
             ]
         )
         practice_func()
+
+# global variables for main
+previous_practice = 0
+input_menu = ""
+menu = ["counting", "qualify noun", "random short form", "pregressive form negative", "comparison", "plan", "become", "want to do", "んです", "you'd better", "obligation", "random"]
+for i,item in enumerate(menu,1):
+    input_menu += str(i) + ". " + item + "\n"
+input_menu += "q: quit \n"
+input_menu += "input practice item to begin: "
+selection = {
+    1: practice_counting,
+    2: qualify_noun,
+    3: random_short_form,
+    4: single_ongoing_negative,
+    5: comparison_practice,
+    6: plan_practice,
+    7: become_practice,
+    8: tai_practice,
+    9: n_desu_practice,
+    10: youd_better_practice,
+    11: obligation_practice,
+    12: practice_all
+}
+if __name__ == "__main__":
+        while True:
+            if previous_practice == 0:
+
+                input_var = input(input_menu)
+                if input_var == "q":
+                    break
+                else:
+                    previous_practice = int(input_var)
+                    selection[int(input_var)]()
+                    pass
+            else:
+                input_var = input("keep practicing?(y/n)")
+                if input_var in ["y", "yes", "YES", "Y"]:
+                    selection[previous_practice]()
+                else:
+                    previous_practice = 0
+                    pass
